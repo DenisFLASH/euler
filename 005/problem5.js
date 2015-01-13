@@ -1,32 +1,10 @@
-// Smallest multiple
-function solveProblem5() {
+/*
+	Smallest multiple
 
-	/*
+	
 	2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 	What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-	*/
-	
-	
-
-	var MAX_DIVISOR = 20;
-	var divisors = fillNaturalNumberArray(MAX_DIVISOR);
-	
-	var start = new Date().getTime();
-	var smallestMultiple = findSmallestMultiple2(divisors);
-	var time = new Date().getTime() - start;
-	document.getElementById("answer").innerHTML = "Smallest multiple of [" + divisors + "] is " + smallestMultiple + "<br>findSmallestMultiple2() execution time: " + time + "<br>";
-	
-	
-	var start = new Date().getTime();
-	var smallestMultiple = findSmallestMultiple3(divisors);
-	var time = new Date().getTime() - start;
-	document.getElementById("answer").innerHTML += "Smallest multiple of [" + divisors + "] is " + smallestMultiple + "<br>findSmallestMultiple3() execution time: " + time + "<br>";
-
-	var start = new Date().getTime();
-	var smallestMultiple = findSmallestMultiple4(divisors);
-	var time = new Date().getTime() - start;
-	document.getElementById("answer").innerHTML += "Smallest multiple of [" + divisors + "] is " + smallestMultiple + "<br>findSmallestMultiple4() execution time: " + time + "<br>";	
-}
+*/
 
 function fillNaturalNumberArray(maxNumber) {
 	var array = [];
@@ -35,6 +13,7 @@ function fillNaturalNumberArray(maxNumber) {
 	}
 	return array;
 }
+
 
 function findSmallestMultiple(divisors) {
 	var smallestMultipleFound = false;
@@ -51,9 +30,9 @@ function findSmallestMultiple(divisors) {
 			}
 		}
 	}
-	
 	return currentNumber;
 }
+
 
 // Optimization: 
 // 1) start from division by 2, not 1 (trivial) ==> first index is 1, not 0
@@ -75,9 +54,9 @@ function findSmallestMultiple2(divisors) {
 			}
 		}
 	}
-	
 	return currentNumber;
 }
+
 
 // Optimization: never test odd numbers, as they wont divide by 2
 function findSmallestMultiple3(divisors) {
@@ -97,9 +76,9 @@ function findSmallestMultiple3(divisors) {
 			}
 		}
 	}
-	
 	return currentNumber;
 }
+
 
 // Optimization: once found a divisor which gives a non-zero remainder , store it.
 // Then, starting from the number which divides by this stored number, increment not by 1 or 2, but by this stored number's value.
@@ -138,6 +117,29 @@ function findSmallestMultiple4(divisors) {
 		}
 
 	}
-	
 	return currentNumber;
 }
+
+
+function solveProblem5(maxDivisor) {
+	var divisors = fillNaturalNumberArray(maxDivisor);
+	
+	var start = new Date().getTime();
+	var smallestMultiple = findSmallestMultiple2(divisors);
+	var time = new Date().getTime() - start;
+	console.log("Smallest multiple of [" + divisors + "] is " + smallestMultiple + "\nfindSmallestMultiple2() execution time: " + time);
+	
+	
+	var start = new Date().getTime();
+	var smallestMultiple = findSmallestMultiple3(divisors);
+	var time = new Date().getTime() - start;
+	console.log("Smallest multiple of [" + divisors + "] is " + smallestMultiple + "\nfindSmallestMultiple3() execution time: " + time);
+
+	var start = new Date().getTime();
+	var smallestMultiple = findSmallestMultiple4(divisors);
+	var time = new Date().getTime() - start;
+	console.log("Smallest multiple of [" + divisors + "] is " + smallestMultiple + "\nfindSmallestMultiple4() execution time: " + time);
+}
+
+
+solveProblem5(20);
